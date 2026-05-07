@@ -47,6 +47,7 @@ int main() {
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
     int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
+    buffer[read_bytes] = '\0';
     if (read_bytes == 0) {
     // connection is closed
     }

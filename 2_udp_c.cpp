@@ -35,7 +35,9 @@ int main() {
     struct sockaddr_in from;
     unsigned int from_len = sizeof(struct sockaddr_in);
     char buffer[4096];
+    
     int bytes = recvfrom(sock, buffer, sizeof(buffer), 0, (struct sockaddr *) &from, &from_len);
+    buffer[bytes] = '\0';
     if (bytes < 0) {
         perror("error reading from socket");
     }

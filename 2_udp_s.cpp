@@ -36,6 +36,7 @@ int main() {
     char buffer[4096];
     int message_count = 0;
     int bytes = recvfrom(sock, buffer, sizeof(buffer), 0, (struct sockaddr *) &from, &from_len);
+    buffer[bytes] = '\0';
     if (bytes < 0) {
         perror("error reading from socket");
     }

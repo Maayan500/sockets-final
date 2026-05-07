@@ -11,5 +11,5 @@ data, sender_info = s.recvfrom(2048)
 print(data.decode('utf-8'))
 print(sender_info)
 
-s.close()
 print("Closing client socket...")
+s.close()
