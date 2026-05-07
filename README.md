@@ -4,17 +4,48 @@
 
 [View the project on GitHub](https://github.com/Maayan500/sockets-final.git)
 
+Repository includes:
+
+* Source code
+* Execution screenshots
+* README documentation
+* UDP and TCP examples in Python and C++
+
+---
+
+## Project Overview
+
 This project demonstrates socket communication using:
-- UDP in Python
-- UDP in C++
-- TCP in Python
-- TCP in C++
 
-The project includes client-server communication examples and execution screenshots.
+* UDP in Python
+* UDP in C++
+* TCP in Python
+* TCP in C++
 
-## Running the Project
+The project includes:
 
-### Python
+* Client-server communication examples
+* Message exchange demonstrations
+* Execution screenshots
+* Improvements and debugging additions
+* Docker usage for C++ compilation
+
+---
+
+## Ports Used
+
+| Part   | Protocol | Language | Port |
+| ------ | -------- | -------- | ---- |
+| Part 1 | UDP      | Python   | 5000 |
+| Part 2 | UDP      | C++      | 6000 |
+| Part 3 | TCP      | Python   | 7000 |
+| Part 4 | TCP      | C++      | 8000 |
+
+---
+
+# Running the Project
+
+## Python
 
 Run server first:
 
@@ -28,13 +59,17 @@ Then run client:
 py 3_tcp_c.py
 ```
 
-### C++
+---
+
+## C++
 
 Using Docker:
 
 ```bash
 docker run --rm -it -v ${PWD}:/work -w /work gcc bash
 ```
+
+This Docker container was used because the local Windows environment did not include a native C++ compiler.
 
 Compile:
 
@@ -50,6 +85,8 @@ Run:
 ./tcp_client
 ```
 
+---
+
 # Sockets Exercise
 
 ## Part 1 - UDP Communication in Python
@@ -58,13 +95,14 @@ In this part of the exercise, UDP communication between a client and a server wa
 
 The server listens on port 12345 and waits for messages from clients.
 
-The client sends the message "Hello" to the server using the localhost IP address 127.0.0.1.
+The client sends the message "Hello from client" to the server using the localhost IP address 127.0.0.1.
 
 After receiving the message, the server sends the same message back in uppercase letters.
 
 The client receives the response from the server and prints it to the screen.
 
 ### Client Code Explanation
+
 `socket(AF_INET, SOCK_DGRAM)` creates a UDP socket using IPv4 communication.
 
 `sendto()` sends data to the server.
@@ -74,6 +112,7 @@ The client receives the response from the server and prints it to the screen.
 `decode('utf-8')` converts bytes into readable text.
 
 ### Server Code Explanation
+
 `bind()` connects the server socket to port 12345.
 
 `recvfrom()` waits for data from clients.
@@ -89,12 +128,12 @@ Several improvements were added to the original UDP Python client-server code.
 1. The communication port was changed from `12345` to `5000`.
 
 2. The client message was changed from:
-`Hello`
-to:
-`Hello from client`
+   `Hello`
+   to:
+   `Hello from client`
 
 3. The server response was modified to include:
-`SERVER RESPONSE:`
+   `SERVER RESPONSE:`
 
 before the returned message.
 
@@ -103,11 +142,17 @@ before the returned message.
 5. A message counter was added to count how many messages were received by the server.
 
 6. Additional status messages were added, such as:
-`UDP server is running and waiting for messages...`
-and
-`Closing client socket...`
+   `UDP server is running and waiting for messages...`
+   and
+   `Closing client socket...`
 
 These changes improved readability, debugging, and user interaction.
+
+### Execution Proof
+
+Execution screenshots for this part can be found in the `proof/` folder.
+
+---
 
 ## Part 2 - UDP Communication in C++
 
@@ -115,13 +160,14 @@ In this part of the exercise, UDP communication was implemented using C++ socket
 
 The server waits for incoming UDP messages on port 5555.
 
-The client sends the message "hello" to the server using the localhost IP address 127.0.0.1.
+The client sends the message "Hello from C++ client" to the server using the localhost IP address 127.0.0.1.
 
 After receiving the message, the server prints the received message and sends it back to the client.
 
 The client receives the response from the server and prints it to the screen.
 
 ### Code Explanation
+
 `socket(AF_INET, SOCK_DGRAM, 0)` creates a UDP socket.
 
 `bind()` attaches the socket to port 5555.
@@ -139,23 +185,31 @@ Several improvements were added to the original UDP C++ implementation.
 1. The communication port was changed from `5555` to `6000`.
 
 2. The client message was changed from:
-`hello`
-to:
-`Hello from C++ client`
+   `hello`
+   to:
+   `Hello from C++ client`
 
 3. The server response was modified to include:
-`SERVER RESPONSE:`
+   `SERVER RESPONSE:`
 
 before the returned message.
 
 4. A startup message was added:
-`UDP C++ server is running...`
+   `UDP C++ server is running...`
 
 5. A message counter was added to count received messages.
 
 6. A timestamp was added to display the exact time the server received the message.
 
+7. Additional memory safety improvements were added by manually terminating received buffers using `\0`.
+
 These changes improved readability, debugging, and overall user interaction.
+
+### Execution Proof
+
+Execution screenshots for this part can be found in the `proof/` folder.
+
+---
 
 ## Part 3 - TCP Communication in Python
 
@@ -193,12 +247,21 @@ The connection remains active until the client sends `quit`.
 
 ### Improvements Added
 
-- Added server startup message
-- Added connection status message
-- Added message counter
-- Added timestamps for received messages
-- Added custom server response format
-- Added client closing message
+* Added server startup message
+* Added connection status message
+* Added message counter
+* Added timestamps for received messages
+* Added custom server response format
+* Added client closing message
+* Changed communication port to 7000
+
+These additions improved debugging, readability, and client-server interaction.
+
+### Execution Proof
+
+Execution screenshots for this part can be found in the `proof/` folder.
+
+---
 
 ## Part 4 - TCP Communication in C++
 
@@ -234,10 +297,42 @@ The server receives the message and sends the same message back to the client.
 
 ### Improvements Added
 
-- Added server startup message
-- Added client connection message
-- Added message counter
-- Added timestamps for received messages
-- Added custom server response format
-- Added client closing message
-- Changed communication port to 8000
+* Added server startup message
+* Added client connection message
+* Added message counter
+* Added timestamps for received messages
+* Added custom server response format
+* Added client closing message
+* Changed communication port to 8000
+* Added buffer safety improvements using `\0` termination
+
+These changes improved readability, debugging, stability, and socket safety.
+
+### Execution Proof
+
+Execution screenshots for this part can be found in the `proof/` folder.
+
+---
+
+# Summary
+
+This project demonstrated practical socket programming using both UDP and TCP protocols in Python and C++.
+
+The implementations included:
+
+* Client-server communication
+* Message transmission and reception
+* TCP and UDP socket management
+* Docker-based C++ compilation
+* Runtime debugging improvements
+* Timestamps and message counters
+* Safer buffer handling in C++
+
+The project helped strengthen understanding of:
+
+* Network communication
+* Socket APIs
+* Client-server architecture
+* TCP vs UDP behavior
+* Cross-language implementation differences
+* Debugging and runtime monitoring
