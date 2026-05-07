@@ -1,3 +1,55 @@
+# Socket Programming Project
+
+## GitHub Repository
+
+[View the project on GitHub](https://github.com/Maayan500/sockets-final.git)
+
+This project demonstrates socket communication using:
+- UDP in Python
+- UDP in C++
+- TCP in Python
+- TCP in C++
+
+The project includes client-server communication examples and execution screenshots.
+
+## Running the Project
+
+### Python
+
+Run server first:
+
+```bash
+py 3_tcp_s.py
+```
+
+Then run client:
+
+```bash
+py 3_tcp_c.py
+```
+
+### C++
+
+Using Docker:
+
+```bash
+docker run --rm -it -v ${PWD}:/work -w /work gcc bash
+```
+
+Compile:
+
+```bash
+g++ 4_tcp_s.cpp -o tcp_server
+g++ 4_tcp_c.cpp -o tcp_client
+```
+
+Run:
+
+```bash
+./tcp_server &
+./tcp_client
+```
+
 # Sockets Exercise
 
 ## Part 1 - UDP Communication in Python
